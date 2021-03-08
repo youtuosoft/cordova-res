@@ -1,6 +1,6 @@
 {
-  "name": "plus-res",
-  "version": "0.16.1",
+  "name": "@youtuosoft/plus-res",
+  "version": "0.16.2",
   "description": "This tool will crop and resize PNG source images into appropriate sizes for modern iOS and Android devices.",
   "homepage": "https://www.youtuosoft.com",
   "author": "youtuosoft<haohetao@gmail.com>",
@@ -39,7 +39,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ionic-team/cordova-res.git"
+    "url": "git+https://github.com/youtuosoft/cordova-res.git"
   },
   "bugs": {
     "url": "https://github.com/ionic-team/cordova-res/issues"

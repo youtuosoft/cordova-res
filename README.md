@@ -8,7 +8,7 @@ This tool will crop and resize JPEG and PNG source images to generate icons and 
 ## Install
 
 ```bash
-$ npm install -g plus-res
+$ npm install -g @youtuosoft/plus-res
 ```
 
 ## Usage
