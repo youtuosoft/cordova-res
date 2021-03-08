@@ -1,16 +1,17 @@
 # Resource Generator
+此为HBuilder Plus移植版，可生成符合HBuilder Plus要求的图标，ios上的启动图采用从cordova上移植过来的storyboard,也就是说需要自定义storyboard。
 
-This tool will crop and resize JPEG and PNG source images to generate icons and splash screens for modern iOS, Android, and Windows. `cordova-res` was developed for use with Cordova, but Capacitor and other native runtimes are supported.
+This tool will crop and resize JPEG and PNG source images to generate icons and splash screens for modern iOS, Android, and Windows. `plus-res` was developed for use with Cordova, but Capacitor and other native runtimes are supported.
 
 ## Install
 
 ```bash
-$ npm install -g cordova-res
+$ npm install -g plus-res
 ```
 
 ## Usage
 
-`cordova-res` expects a Cordova project structure such as:
+`plus-res` expects a Cordova project structure such as:
 
 ```
 resources/
@@ -26,23 +27,23 @@ config.xml
 To generate resources with all the default options, just run:
 
 ```bash
-$ cordova-res
+$ plus-res
 ```
 
-`cordova-res` accepts a platform for the first argument. If specified, resources are generated only for that platform:
+`plus-res` accepts a platform for the first argument. If specified, resources are generated only for that platform:
 
 ```bash
-$ cordova-res ios
+$ plus-res ios
 ```
 
-Otherwise, if `config.xml` exists, `cordova-res` will look for platforms (e.g. `<platform name="ios">`) and generate resources only for the configured platforms.
+Otherwise, if `config.xml` exists, `plus-res` will look for platforms (e.g. `<platform name="ios">`) and generate resources only for the configured platforms.
 
 #### Documentation
 
 See the help documentation on the command line with the `--help` flag.
 
 ```bash
-$ cordova-res --help
+$ plus-res --help
 ```
 
 ### Adaptive Icons
@@ -60,16 +61,16 @@ Regular Android icons will still be generated as a fallback for Android devices 
 
 ### Capacitor
 
-To use `cordova-res` in Capacitor and other native runtimes, it is recommended to use `--skip-config` (skips reading & writing to Cordova's `config.xml` file) and `--copy` (copies generated resources into native projects).
+To use `plus-res` in Capacitor and other native runtimes, it is recommended to use `--skip-config` (skips reading & writing to Cordova's `config.xml` file) and `--copy` (copies generated resources into native projects).
 
 For example, to generate icons and splash screens for iOS and Android in Capacitor, run:
 
 ```bash
-$ cordova-res ios --skip-config --copy
-$ cordova-res android --skip-config --copy
+$ plus-res ios --skip-config --copy
+$ plus-res android --skip-config --copy
 ```
 
-You can use `--ios-project` and `--android-project` to specify the native project directories into which these resources are copied. By default, `cordova-res` copies Android resources into `android/` and iOS resources into `ios/` (the directories Capacitor uses).
+You can use `--ios-project` and `--android-project` to specify the native project directories into which these resources are copied. By default, `plus-res` copies Android resources into `android/` and iOS resources into `ios/` (the directories Capacitor uses).
 
 ### Tips
 
@@ -89,12 +90,12 @@ resources/windows/splash
 
 ### Programmatic API
 
-`cordova-res` can be used programmatically.
+`plus-res` can be used programmatically.
 
 #### CommonJS Example
 
 ```js
-const run = require('cordova-res');
+const run = require('plus-res');
 
 await run();
 ```
@@ -104,7 +105,7 @@ await run();
 `run()` takes an options object described by the interface `Options`. If options are provided, resources are generated in an explicit, opt-in manner. In the following example, only Android icons and iOS splash screens are generated.
 
 ```ts
-import { Options, run } from 'cordova-res';
+import { Options, run } from 'plus-res';
 
 const options: Options = {
   directory: '/path/to/project',
@@ -121,5 +122,4 @@ await run(options);
 
 ### Cordova Reference Documentation
 
-- Icons: https://cordova.apache.org/docs/en/latest/config_ref/images.html
-- Splash Screens: https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-splashscreen/
+- plus sdk: https://nativesupport.dcloud.net.cn/AppDocs/README

@@ -25,15 +25,17 @@ import {
   ANDROID_PORT_XHDPI_SCREEN,
   ANDROID_PORT_XXHDPI_SCREEN,
   ANDROID_PORT_XXXHDPI_SCREEN,
+  ANDROID_MDPI_PUSH,
+  ANDROID_HDPI_PUSH,
+  ANDROID_XHDPI_PUSH,
+  ANDROID_XXHDPI_PUSH,
+  ANDROID_XXXHDPI_PUSH,
   IOS_20_PT_ICON,
-  IOS_20_PT_2X_ICON,
-  IOS_20_PT_3X_ICON,
   IOS_29_PT_ICON,
   IOS_29_PT_2X_ICON,
   IOS_29_PT_3X_ICON,
   IOS_40_PT_ICON,
   IOS_40_PT_2X_ICON,
-  IOS_40_PT_3X_ICON,
   IOS_60_PT_2X_ICON,
   IOS_60_PT_3X_ICON,
   IOS_76_PT_ICON,
@@ -41,6 +43,7 @@ import {
   IOS_83_5_PT_2X_ICON,
   IOS_1024_ICON,
   IOS_2X_UNIVERSAL_ANYANY_SPLASH,
+  IOS_60_PT_ICON,
 } from './resources';
 
 export interface NativeProjectConfig {
@@ -55,6 +58,7 @@ export const enum NativeResourceType {
   ANDROID_ROUND = 'android-round',
   ANDROID_LEGACY = 'android-legacy',
   ANDROID_SPLASH = 'android-splash',
+  ANDROID_PUSH = 'android-push',
 }
 
 export interface NativeResource {
@@ -69,11 +73,12 @@ const SOURCE_IOS_ICON = 'ios/icon';
 const SOURCE_IOS_SPLASH = 'ios/splash';
 const SOURCE_ANDROID_ICON = 'android/icon';
 const SOURCE_ANDROID_SPLASH = 'android/splash';
+const SOURCE_ANDROID_PUSH = 'android/push';
 
 const IOS_APP_ICON_SET_NAME = 'AppIcon';
-const IOS_APP_ICON_SET_PATH = `App/App/Assets.xcassets/${IOS_APP_ICON_SET_NAME}.appiconset`;
-const IOS_SPLASH_IMAGE_SET_NAME = 'Splash';
-const IOS_SPLASH_IMAGE_SET_PATH = `App/App/Assets.xcassets/${IOS_SPLASH_IMAGE_SET_NAME}.imageset`;
+const IOS_APP_ICON_SET_PATH = `HBuilder/Assets.xcassets/${IOS_APP_ICON_SET_NAME}.appiconset`;
+const IOS_SPLASH_IMAGE_SET_NAME = 'LaunchStoryboard';
+const IOS_SPLASH_IMAGE_SET_PATH = `HBuilder/Assets.xcassets/${IOS_SPLASH_IMAGE_SET_NAME}.imageset`;
 
 const ANDROID_RES_PATH = 'app/src/main/res';
 
@@ -81,92 +86,67 @@ const IOS_ICONS: readonly NativeResource[] = [
   {
     type: NativeResourceType.IOS_ICON,
     source: IOS_20_PT_ICON.src,
-    target: 'AppIcon-20x20@1x.png',
-  },
-  {
-    type: NativeResourceType.IOS_ICON,
-    source: IOS_20_PT_2X_ICON.src,
-    target: 'AppIcon-20x20@2x.png',
-  },
-  {
-    type: NativeResourceType.IOS_ICON,
-    source: IOS_20_PT_2X_ICON.src,
-    target: 'AppIcon-20x20@2x-1.png',
-  },
-  {
-    type: NativeResourceType.IOS_ICON,
-    source: IOS_20_PT_3X_ICON.src,
-    target: 'AppIcon-20x20@3x.png',
+    target: 'icon20.png',
   },
   {
     type: NativeResourceType.IOS_ICON,
     source: IOS_29_PT_ICON.src,
-    target: 'AppIcon-29x29@1x.png',
-  },
-  {
-    type: NativeResourceType.IOS_ICON,
-    source: IOS_29_PT_2X_ICON.src,
-    target: 'AppIcon-29x29@2x.png',
-  },
-  {
-    type: NativeResourceType.IOS_ICON,
-    source: IOS_29_PT_2X_ICON.src,
-    target: 'AppIcon-29x29@2x-1.png',
-  },
-  {
-    type: NativeResourceType.IOS_ICON,
-    source: IOS_29_PT_3X_ICON.src,
-    target: 'AppIcon-29x29@3x.png',
+    target: '29x29.png',
   },
   {
     type: NativeResourceType.IOS_ICON,
     source: IOS_40_PT_ICON.src,
-    target: 'AppIcon-40x40@1x.png',
+    target: 'icon40.png',
   },
   {
     type: NativeResourceType.IOS_ICON,
-    source: IOS_40_PT_2X_ICON.src,
-    target: 'AppIcon-40x40@2x.png',
+    source: IOS_29_PT_2X_ICON.src,
+    target: 'icon58.png',
   },
   {
     type: NativeResourceType.IOS_ICON,
-    source: IOS_40_PT_2X_ICON.src,
-    target: 'AppIcon-40x40@2x-1.png',
-  },
-  {
-    type: NativeResourceType.IOS_ICON,
-    source: IOS_40_PT_3X_ICON.src,
-    target: 'AppIcon-40x40@3x.png',
-  },
-  {
-    type: NativeResourceType.IOS_ICON,
-    source: IOS_60_PT_2X_ICON.src,
-    target: 'AppIcon-60x60@2x.png',
-  },
-  {
-    type: NativeResourceType.IOS_ICON,
-    source: IOS_60_PT_3X_ICON.src,
-    target: 'AppIcon-60x60@3x.png',
+    source: IOS_60_PT_ICON.src,
+    target: 'icon60.png',
   },
   {
     type: NativeResourceType.IOS_ICON,
     source: IOS_76_PT_ICON.src,
-    target: 'AppIcon-76x76@1x.png',
+    target: 'icon76.png',
+  },
+  {
+    type: NativeResourceType.IOS_ICON,
+    source: IOS_40_PT_2X_ICON.src,
+    target: 'icon80.png',
+  },
+  {
+    type: NativeResourceType.IOS_ICON,
+    source: IOS_29_PT_3X_ICON.src,
+    target: 'icon87.png',
+  },
+  {
+    type: NativeResourceType.IOS_ICON,
+    source: IOS_60_PT_2X_ICON.src,
+    target: 'icon120.png',
   },
   {
     type: NativeResourceType.IOS_ICON,
     source: IOS_76_PT_2X_ICON.src,
-    target: 'AppIcon-76x76@2x.png',
+    target: 'icon152.png',
   },
   {
     type: NativeResourceType.IOS_ICON,
     source: IOS_83_5_PT_2X_ICON.src,
-    target: 'AppIcon-83.5x83.5@2x.png',
+    target: 'icon167.png',
+  },
+  {
+    type: NativeResourceType.IOS_ICON,
+    source: IOS_60_PT_3X_ICON.src,
+    target: 'icon180.png',
   },
   {
     type: NativeResourceType.IOS_ICON,
     source: IOS_1024_ICON.src,
-    target: 'AppIcon-512@2x.png',
+    target: 'icon1024.png',
   },
 ];
 
@@ -174,21 +154,31 @@ const IOS_SPLASHES: readonly NativeResource[] = [
   {
     type: NativeResourceType.IOS_SPLASH,
     source: IOS_2X_UNIVERSAL_ANYANY_SPLASH.src,
-    target: 'splash-2732x2732.png',
-  },
-  {
-    type: NativeResourceType.IOS_SPLASH,
-    source: IOS_2X_UNIVERSAL_ANYANY_SPLASH.src,
-    target: 'splash-2732x2732-1.png',
-  },
-  {
-    type: NativeResourceType.IOS_SPLASH,
-    source: IOS_2X_UNIVERSAL_ANYANY_SPLASH.src,
-    target: 'splash-2732x2732-2.png',
+    target: 'Default@2x~universal~anyany.png',
   },
 ];
 
 const ANDROID_ICONS: readonly NativeResource[] = [
+  {
+    type: NativeResourceType.ANDROID_LEGACY,
+    source: ANDROID_MDPI_ICON.src,
+    target: 'mipmap/ic_launcher.png',
+  },
+  {
+    type: NativeResourceType.ANDROID_ROUND,
+    source: ANDROID_MDPI_ICON.src,
+    target: 'mipmap/ic_launcher_round.png',
+  },
+  {
+    type: NativeResourceType.ANDROID_ADAPTIVE_FOREGROUND,
+    source: ANDROID_MDPI_ADAPTIVE_ICON.foreground,
+    target: 'mipmap/ic_launcher_foreground.png',
+  },
+  {
+    type: NativeResourceType.ANDROID_ADAPTIVE_BACKGROUND,
+    source: ANDROID_MDPI_ADAPTIVE_ICON.background,
+    target: 'mipmap/ic_launcher_background.png',
+  },
   {
     type: NativeResourceType.ANDROID_LEGACY,
     source: ANDROID_MDPI_ICON.src,
@@ -348,6 +338,38 @@ const ANDROID_SPLASHES: readonly NativeResource[] = [
     target: 'drawable-port-xxxhdpi/splash.png',
   },
 ];
+const ANDROID_PUSHES: readonly NativeResource[] = [
+  {
+    type: NativeResourceType.ANDROID_PUSH,
+    source: ANDROID_MDPI_PUSH.src,
+    target: 'drawable/push.png',
+  },
+  {
+    type: NativeResourceType.ANDROID_PUSH,
+    source: ANDROID_MDPI_PUSH.src,
+    target: 'drawable-mdpi/push.png',
+  },
+  {
+    type: NativeResourceType.ANDROID_PUSH,
+    source: ANDROID_HDPI_PUSH.src,
+    target: 'drawable-hdpi/push.png',
+  },
+  {
+    type: NativeResourceType.ANDROID_PUSH,
+    source: ANDROID_XHDPI_PUSH.src,
+    target: 'drawable-xhdpi/push.png',
+  },
+  {
+    type: NativeResourceType.ANDROID_PUSH,
+    source: ANDROID_XXHDPI_PUSH.src,
+    target: 'drawable-xxhdpi/push.png',
+  },
+  {
+    type: NativeResourceType.ANDROID_PUSH,
+    source: ANDROID_XXXHDPI_PUSH.src,
+    target: 'drawable-xxxhdpi/push.png',
+  },
+];
 
 async function copyImages(
   sourcePath: string,
@@ -366,7 +388,7 @@ async function copyImages(
         await copy(source, target);
       } catch (e) {
         debug(e);
-        errstream?.write(`WARN:\tError occurred while copying ${source}\n`);
+        errstream?.write(`WARN:\t${source} not exists\n`);
       }
     }),
   );
@@ -380,6 +402,7 @@ export async function copyToNativeProject(
   nativeProject: NativeProjectConfig,
   shouldCopyIcons: boolean,
   shouldCopySplash: boolean,
+  shouldCopyPushIcons: boolean,
   logstream: NodeJS.WritableStream | null,
   errstream: NodeJS.WritableStream | null,
 ): Promise<void> {
@@ -418,6 +441,14 @@ export async function copyToNativeProject(
         path.join(resourcesDirectory, SOURCE_ANDROID_SPLASH),
         path.join(androidProjectDirectory, ANDROID_RES_PATH),
         ANDROID_SPLASHES,
+        errstream,
+      );
+    }
+    if (shouldCopyPushIcons) {
+      count += await copyImages(
+        path.join(resourcesDirectory, SOURCE_ANDROID_PUSH),
+        path.join(androidProjectDirectory, ANDROID_RES_PATH),
+        ANDROID_PUSHES,
         errstream,
       );
     }

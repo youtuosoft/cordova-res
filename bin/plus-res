@@ -2,7 +2,7 @@
 
 'use strict';
 
-process.title = 'cordova-res';
+process.title = 'plus-res';
 
 if (process.argv.includes('--verbose')) {
   process.env.DEBUG = '*';

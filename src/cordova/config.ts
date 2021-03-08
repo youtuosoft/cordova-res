@@ -364,6 +364,7 @@ export const RESOURCE_WEIGHTS: { [R in ResourceType]: number } = {
   [ResourceType.ADAPTIVE_ICON]: 1,
   [ResourceType.ICON]: 2,
   [ResourceType.SPLASH]: 3,
+  [ResourceType.PUSH]: 4,
 };
 
 export const sortResources = (
@@ -453,6 +454,13 @@ export function getResourceConfigXmlRules(
         case ResourceType.SPLASH:
           return {
             nodeName: 'splash',
+            nodeAttributes: [ResourceKey.SRC, ResourceKey.DENSITY],
+            indexAttributes: [{ key: ResourceKey.DENSITY, values: identity }],
+            included: () => true,
+          };
+        case ResourceType.PUSH:
+          return {
+            nodeName: 'push',
             nodeAttributes: [ResourceKey.SRC, ResourceKey.DENSITY],
             indexAttributes: [{ key: ResourceKey.DENSITY, values: identity }],
             included: () => true,

@@ -13,7 +13,7 @@ import {
   write as writeConfig,
 } from './cordova/config';
 import { BaseError } from './error';
-import type { ResizeOptions, ImageSchema } from './image';
+import type { ImageSchema, ResizeOptions } from './image';
 import type { NativeProjectConfig } from './native';
 import { copyToNativeProject } from './native';
 import type {
@@ -84,7 +84,8 @@ async function CordovaRes(options: CordovaRes.Options = {}): Promise<Result> {
   const resources: ResourceConfig[] = [];
   const sources: ResolvedSource[] = [];
 
-  if (!skipConfig) {
+  // 这是与变量的意思相反，当存在--config时才处理config.xml文件，skipConfig对应的是--config
+  if (skipConfig) {
     if (await pathWritable(configPath)) {
       config = await readConfig(configPath);
     } else {
@@ -128,12 +129,15 @@ async function CordovaRes(options: CordovaRes.Options = {}): Promise<Result> {
           ) !== -1;
         const shouldCopySplash =
           resources.findIndex(res => res.type === ResourceType.SPLASH) !== -1;
+        const shouldCopyPushIcons =
+          resources.findIndex(res => res.type === ResourceType.PUSH) !== -1;
         await copyToNativeProject(
           platform,
           resourcesDirectory,
           nativeProject,
           shouldCopyIcons,
           shouldCopySplash,
+          shouldCopyPushIcons,
           logstream,
           errstream,
         );

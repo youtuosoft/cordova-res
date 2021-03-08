@@ -9,12 +9,14 @@ export const enum ResourceType {
   ADAPTIVE_ICON = 'adaptive-icon',
   ICON = 'icon',
   SPLASH = 'splash',
+  PUSH = 'push',
 }
 
 export const RESOURCE_TYPES: readonly ResourceType[] = [
   ResourceType.ADAPTIVE_ICON,
   ResourceType.ICON,
   ResourceType.SPLASH,
+  ResourceType.PUSH,
 ];
 
 export const enum SourceType {
@@ -208,6 +210,15 @@ export function getRasterResourceSchema(
             height: 1920,
             alpha: true,
           };
+        case ResourceType.PUSH:
+          /**
+           * 处理消息推送图标
+           */
+          return {
+            width: 512,
+            height: 512,
+            alpha: true,
+          };
       }
     case Platform.IOS:
       switch (type) {
@@ -247,8 +258,8 @@ export function getRasterResourceSchema(
            * @see https://docs.microsoft.com/en-us/windows/uwp/design/style/app-icons-and-logos
            */
           return {
-            width: 1240,
-            height: 1240,
+            width: 1024,
+            height: 1024,
             alpha: true,
           };
         case ResourceType.SPLASH:
@@ -309,6 +320,8 @@ export function prettyResourceType(
       return 'icon' + (pluralize ? 's' : '');
     case ResourceType.SPLASH:
       return 'splash screen' + (pluralize ? 's' : '');
+    case ResourceType.PUSH:
+      return 'push icon' + (pluralize ? 's' : '');
   }
 }
 
@@ -430,6 +443,12 @@ export type AndroidSplashResourceConfig = BaseResourceConfig<
   | ResourceKey.ORIENTATION
 >;
 
+export type AndroidPushResourceConfig = BaseResourceConfig<
+  Platform.ANDROID,
+  ResourceType.PUSH,
+  ImageResourceKey | ResourceKey.SRC | ResourceKey.DENSITY
+>;
+
 export type IOSIconResourceConfig = BaseResourceConfig<
   Platform.IOS,
   ResourceType.ICON,
@@ -464,6 +483,7 @@ export type WindowsSplashResourceConfig = BaseResourceConfig<
 export type SimpleResourceConfig =
   | AndroidIconResourceConfig
   | AndroidSplashResourceConfig
+  | AndroidPushResourceConfig
   | IOSIconResourceConfig
   | IOSSplashResourceConfig
   | WindowsIconResourceConfig
@@ -504,6 +524,8 @@ export function getSimpleResources(
           return ANDROID_ICON_RESOURCES;
         case ResourceType.SPLASH:
           return ANDROID_SPLASH_RESOURCES;
+        case ResourceType.PUSH:
+          return ANDROID_PUSH_RESOURCES;
       }
       break;
     case Platform.IOS:
@@ -1033,6 +1055,74 @@ export const ANDROID_SPLASH_RESOURCES: readonly AndroidSplashResourceConfig[] = 
   ANDROID_PORT_XHDPI_SCREEN,
   ANDROID_PORT_XXHDPI_SCREEN,
   ANDROID_PORT_XXXHDPI_SCREEN,
+];
+export const ANDROID_LDPI_PUSH: AndroidPushResourceConfig = {
+  platform: Platform.ANDROID,
+  type: ResourceType.PUSH,
+  src: 'drawable-ldpi-push.png',
+  format: Format.PNG,
+  width: 36,
+  height: 36,
+  density: Density.LDPI,
+};
+
+export const ANDROID_MDPI_PUSH: AndroidPushResourceConfig = {
+  platform: Platform.ANDROID,
+  type: ResourceType.PUSH,
+  src: 'drawable-mdpi-push.png',
+  format: Format.PNG,
+  width: 48,
+  height: 48,
+  density: Density.MDPI,
+};
+
+export const ANDROID_HDPI_PUSH: AndroidPushResourceConfig = {
+  platform: Platform.ANDROID,
+  type: ResourceType.PUSH,
+  src: 'drawable-hdpi-push.png',
+  format: Format.PNG,
+  width: 72,
+  height: 72,
+  density: Density.HDPI,
+};
+
+export const ANDROID_XHDPI_PUSH: AndroidPushResourceConfig = {
+  platform: Platform.ANDROID,
+  type: ResourceType.PUSH,
+  src: 'drawable-xhdpi-push.png',
+  format: Format.PNG,
+  width: 96,
+  height: 96,
+  density: Density.XHDPI,
+};
+
+export const ANDROID_XXHDPI_PUSH: AndroidPushResourceConfig = {
+  platform: Platform.ANDROID,
+  type: ResourceType.PUSH,
+  src: 'drawable-xxhdpi-push.png',
+  format: Format.PNG,
+  width: 144,
+  height: 144,
+  density: Density.XXHDPI,
+};
+
+export const ANDROID_XXXHDPI_PUSH: AndroidPushResourceConfig = {
+  platform: Platform.ANDROID,
+  type: ResourceType.PUSH,
+  src: 'drawable-xxxhdpi-push.png',
+  format: Format.PNG,
+  width: 192,
+  height: 192,
+  density: Density.XXXHDPI,
+};
+
+export const ANDROID_PUSH_RESOURCES: readonly AndroidPushResourceConfig[] = [
+  ANDROID_LDPI_PUSH,
+  ANDROID_MDPI_PUSH,
+  ANDROID_HDPI_PUSH,
+  ANDROID_XHDPI_PUSH,
+  ANDROID_XXHDPI_PUSH,
+  ANDROID_XXXHDPI_PUSH,
 ];
 
 /**

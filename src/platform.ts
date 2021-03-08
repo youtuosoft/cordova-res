@@ -101,6 +101,7 @@ export interface RunPlatformOptions {
   readonly [ResourceType.ADAPTIVE_ICON]?: AdaptiveIconResourceOptions;
   readonly [ResourceType.ICON]?: SimpleResourceOptions;
   readonly [ResourceType.SPLASH]?: SimpleResourceOptions;
+  readonly [ResourceType.PUSH]?: SimpleResourceOptions;
 }
 
 export interface GeneratedImageResource {
@@ -167,6 +168,19 @@ export async function run(
     resources.push(...splashResult.resources);
     sources.push(splashResult.source);
   }
+  const pushResult = await generateSimpleResources(
+    ResourceType.PUSH,
+    platform,
+    resourcesDirectory,
+    options[ResourceType.PUSH],
+    operations,
+    errstream,
+  );
+
+  if (pushResult) {
+    resources.push(...pushResult.resources);
+    sources.push(pushResult.source);
+  }
 
   return {
     resources,
@@ -220,7 +234,7 @@ export async function safelyGenerateSimpleResources(
  * with `undefined`.
  */
 export async function generateSimpleResources(
-  type: ResourceType.ICON | ResourceType.SPLASH,
+  type: ResourceType.ICON | ResourceType.SPLASH | ResourceType.PUSH,
   platform: Platform,
   resourcesDirectory: string,
   options: Readonly<SimpleResourceOptions> | undefined,

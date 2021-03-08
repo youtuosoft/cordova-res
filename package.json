@@ -1,6 +1,6 @@
 {
-  "name": "cordova-res",
-  "version": "0.15.3",
+  "name": "plus-res",
+  "version": "0.16.0",
   "description": "This tool will crop and resize PNG source images into appropriate sizes for modern iOS and Android devices.",
   "homepage": "https://ionicframework.com",
   "author": "Ionic Team <hi@ionicframework.com>",
@@ -11,7 +11,7 @@
     "node": ">=10.3.0"
   },
   "bin": {
-    "cordova-res": "./bin/cordova-res"
+    "plus-res": "./bin/plus-res"
   },
   "scripts": {
     "build": "tsc",
@@ -20,7 +20,7 @@
     "lint": "npm run eslint && npm run prettier -- --check",
     "fmt": "npm run eslint -- --fix && npm run prettier -- --write",
     "eslint": "eslint . --ext ts",
-    "prettier": "prettier 'src/**/*.ts'",
+    "prettier": "prettier \"src/**/*.ts\"",
     "release": "np",
     "prepublishOnly": "npm run build"
   },

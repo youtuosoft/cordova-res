@@ -16,9 +16,9 @@ import type {
   SimpleResourceOptions,
 } from './platform';
 import {
-  PLATFORMS,
-  Platform,
   filterSupportedPlatforms,
+  Platform,
+  PLATFORMS,
   validatePlatforms,
 } from './platform';
 import type { Source } from './resources';
@@ -163,6 +163,14 @@ export function generateRunOptions(
           args,
         )
       : undefined,
+    [ResourceType.PUSH]: types.includes(ResourceType.PUSH)
+      ? parseSimpleResourceOptions(
+          platform,
+          ResourceType.PUSH,
+          resourcesDirectory,
+          args,
+        )
+      : undefined,
   };
 }
 
@@ -180,7 +188,7 @@ export function parseCopyOption(args: readonly string[]): boolean {
 }
 
 export function parseSkipConfigOption(args: readonly string[]): boolean {
-  return args.includes('--skip-config');
+  return args.includes('--config');
 }
 
 export function parseAdaptiveIconResourceOptions(
@@ -242,10 +250,13 @@ export function parseAdaptiveIconBackgroundOptions(
 
 export function parseSimpleResourceOptions(
   platform: Platform,
-  type: ResourceType.ICON | ResourceType.SPLASH,
+  type: ResourceType.ICON | ResourceType.SPLASH | ResourceType.PUSH,
   resourcesDirectory: string,
   args: readonly string[],
-): SimpleResourceOptions {
+): SimpleResourceOptions | undefined {
+  if (platform !== Platform.ANDROID && type === ResourceType.PUSH) {
+    return;
+  }
   const source = parseSourceFromArgs(type, args);
 
   return {
@@ -269,7 +280,7 @@ export function parseAdaptiveIconSourceFromArgs(
 }
 
 export function parseSourceFromArgs(
-  type: ResourceType.ICON | ResourceType.SPLASH,
+  type: ResourceType.ICON | ResourceType.SPLASH | ResourceType.PUSH,
   args: readonly string[],
 ): string | undefined {
   const sourceOption = getOptionValue(args, `--${type}-source`);
