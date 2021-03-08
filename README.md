@@ -1,6 +1,8 @@
 # Resource Generator
 此为HBuilder Plus移植版，可生成符合HBuilder Plus要求的图标，ios上的启动图采用从cordova上移植过来的storyboard,也就是说需要自定义storyboard。
 
+AndroidManifest.xml中的icon配置需修改为”mipmap/ic_launcher“。
+
 This tool will crop and resize JPEG and PNG source images to generate icons and splash screens for modern iOS, Android, and Windows. `plus-res` was developed for use with Cordova, but Capacitor and other native runtimes are supported.
 
 ## Install
