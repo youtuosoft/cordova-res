@@ -32,12 +32,13 @@ const help = `
 
   Options:
 
-    --type <icon|splash|adaptive-icon> ... Only generate one type of resource
+    --type <icon|splash|adaptive-icon|push> ... Only generate one type of resource
     --resources <path> ................... Use a different resources directory (default: '${DEFAULT_RESOURCES_DIRECTORY}')
-    --skip-config ........................ Skip reading/writing to 'config.xml'
+    --config ............................. reading/writing to 'config.xml'
 
     --icon-source <path> ................. Use specified file for icon source image
     --splash-source <path> ............... Use specified file for splash source image
+    --push-source <path> ................. Use specified file for push source image
     --icon-foreground-source <path> ...... Use file for foreground of adaptive icon
     --icon-background-source <path|hex> .. Use file or color for background of adaptive icon
 
