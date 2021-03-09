@@ -76,9 +76,9 @@ const SOURCE_ANDROID_SPLASH = 'android/splash';
 const SOURCE_ANDROID_PUSH = 'android/push';
 
 const IOS_APP_ICON_SET_NAME = 'AppIcon';
-const IOS_APP_ICON_SET_PATH = `HBuilder/Assets.xcassets/${IOS_APP_ICON_SET_NAME}.appiconset`;
+const IOS_APP_ICON_SET_PATH = `HBuilder/Images.xcassets/${IOS_APP_ICON_SET_NAME}.appiconset`;
 const IOS_SPLASH_IMAGE_SET_NAME = 'LaunchStoryboard';
-const IOS_SPLASH_IMAGE_SET_PATH = `HBuilder/Assets.xcassets/${IOS_SPLASH_IMAGE_SET_NAME}.imageset`;
+const IOS_SPLASH_IMAGE_SET_PATH = `HBuilder/Images.xcassets/${IOS_SPLASH_IMAGE_SET_NAME}.imageset`;
 
 const ANDROID_RES_PATH = 'app/src/main/res';
 
